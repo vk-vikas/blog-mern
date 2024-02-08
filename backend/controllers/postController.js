@@ -3,8 +3,8 @@ import Post from "../models/post.js";
 export const createPost = async (req, res) => {
   try {
     // create new post
-    const { title, summary, content, author } = req.body;
-    if (!title || !summary || !content || !author) {
+    const { title, summary, content } = req.body;
+    if (!title || !summary || !content) {
       res.status(400).json({
         status: "fail",
         message: "Please Enter all the data for Post",
@@ -14,7 +14,7 @@ export const createPost = async (req, res) => {
       title,
       summary,
       content,
-      author,
+      author: req.body.id,
     });
     res.status(201).json({
       status: "success",

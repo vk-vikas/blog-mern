@@ -75,7 +75,7 @@ export const Protect = async (req, res, next) => {
     }
     // token verification
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-
+    req.body.id = decoded.id;
     /* basic part over , next steps are extra measures of security */
     // check if user still exists
     const user = await User.findById(decoded.id);
