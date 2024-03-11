@@ -32,12 +32,25 @@ export const getAllPost = async (req, res) => {
       status: "success",
       data: allPosts,
     });
-    // fetch all post
   } catch (error) {}
 };
+
 export const updatePost = async (req, res) => {
   try {
     // update a post
+    const { title, summary, content } = req.body;
+    console.log(req.body);
+    const toUpdatePost = await Post.findById(req.params.id);
+    await toUpdatePost.update({
+      title,
+      summary,
+      content,
+    });
+    console.log("{{{{{{{{{{{{{{{{{{{");
+    res.status(200).json({
+      status: "success",
+      data: toUpdatePost,
+    });
   } catch (error) {}
 };
 
