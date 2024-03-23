@@ -11,6 +11,16 @@ export const login = createAsyncThunk("user/login", async (data, thunkAPI) => {
   };
 });
 
+export const register = createAsyncThunk(
+  "user/register",
+  async (data, thunkAPI) => {
+    const response = await axios.post(
+      "http://localhost:8000/users/signup",
+      data
+    );
+  }
+);
+
 const initialState = {
   isLoggedIn: false,
   username: "",
@@ -28,11 +38,8 @@ export const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(login.fulfilled, (state, action) => {
-      // this is token
-      console.log(action.payload.data);
       state.isLoggedIn = true;
       state.username = action.payload.data.email;
-      console.log("state", state.isLoggedIn);
     });
   },
 });

@@ -29,7 +29,7 @@ const Header = () => {
         {!username && (
           <>
             <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+            <Link to="/signup">Register</Link>
           </>
         )}
       </nav>
